@@ -79,10 +79,10 @@ public class Sockets {
 	 
 	public static void main(String[] args) {
 		//服务端的IP
-		String IPAdress="192.168.1.199";
+		String IPAdress="192.168.1.100";
 		//创建一个客户端socket，指定服务端的IP和端口号
 		try {
-			socket = new Socket(IPAdress, 30000);
+			socket = new Socket(IPAdress, 2333);
 			System.out.println("连接主机成功！ ");
 			
 			new Thread(new ReceiveClientThreat(socket)).start(); 
