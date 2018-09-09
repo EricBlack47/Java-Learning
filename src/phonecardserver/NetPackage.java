@@ -4,6 +4,8 @@ import phonecardserver.services.NetService;
 
 public class NetPackage extends ServicePackage implements NetService {
 	
+
+
 	private int flow;
 	
 	@Override
@@ -23,9 +25,13 @@ public class NetPackage extends ServicePackage implements NetService {
 
 
 	@Override
-	public void netPlay() {
+	public void netPlay(int flow, MobileCard mc) {
 		// TODO Auto-generated method stub
 		
 	}
 
+	@Override
+	public String toString() {
+		return "Íø³æÌ×²Í";
+	}
 }

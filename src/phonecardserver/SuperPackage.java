@@ -36,24 +36,30 @@ public class SuperPackage extends ServicePackage implements CallService,SendServ
 	
 	@Override
 	public void showInfo() {
-		// TODO Auto-generated method stub
 		super.showInfo();
 	}
 
+	
+
 	@Override
-	public void netPlay() {
+	public String toString() {
+		return "Œ“ «≥¨»ÀÃ◊≤Õ";
+	}
+
+	@Override
+	public void send(int count, MobileCard mc) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void send() {
+	public void call(int talkTimeMin, MobileCard mc) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void call() {
+	public void netPlay(int flow, MobileCard mc) {
 		// TODO Auto-generated method stub
 		
 	}

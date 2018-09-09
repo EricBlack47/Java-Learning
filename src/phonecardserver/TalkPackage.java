@@ -24,15 +24,16 @@ public class TalkPackage extends ServicePackage implements CallService,SendServi
 		this.smsCount = smsCount;
 	}
 
+	
+
 	@Override
-	public void send() {
-		// TODO Auto-generated method stub
-		
+	public String toString() {
+		return "»°ðìÌ×²Í";
 	}
 
 	@Override
-	public void call() {
-		// TODO Auto-generated method stub
+	public void call(int talkTimeMin,MobileCard mc) {
+		
 		
 	}
 	
@@ -40,6 +41,12 @@ public class TalkPackage extends ServicePackage implements CallService,SendServi
 	public void showInfo() {
 		// TODO Auto-generated method stub
 		super.showInfo();
+	}
+
+	@Override
+	public void send(int count, MobileCard mc) {
+		// TODO Auto-generated method stub
+		
 	}
 	
 	

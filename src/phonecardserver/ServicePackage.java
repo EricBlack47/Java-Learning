@@ -16,4 +16,9 @@ public class ServicePackage {
 
 	}
 
+	@Override
+	public String toString() {
+		return "ServicePackage []";
+	}
+
 }

@@ -1,7 +1,9 @@
 package phonecardserver.services;
 
+import phonecardserver.MobileCard;
+
 public interface SendService {
 	
-	void send();
+	void send(int count, MobileCard mc);
 
 }
