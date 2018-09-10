@@ -4,13 +4,13 @@ import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 
-import phonecardserver.ConsumInfo;
-import phonecardserver.MobileCard;
+import phonecardserver.entity.ConsumInfo;
+import phonecardserver.entity.MobileCard;
 
 public class CardUtil {
-	
-	private static Map<String,MobileCard> cards;//创建卡号集合，用来存储完成创建的卡
-	private static Map<String, List<ConsumInfo>> consumInfos;//创建消费记录集合，存放所有卡消费记录
+	static Scanner sc=new Scanner(System.in);
+	public static Map<String,MobileCard> cards;//创建卡号集合，用来存储完成创建的卡
+	public static Map<String, List<ConsumInfo>> consumInfos;//创建消费记录集合，存放所有卡消费记录
 	
 	//初始化场景
 	public static void initScene() { 
@@ -43,7 +43,6 @@ public class CardUtil {
 			
 	//向卡集合添加新卡
 	public static void addCard(MobileCard m) {
-		
 	}
 	
 	//注销卡号，从集合中移除
@@ -72,10 +71,8 @@ public class CardUtil {
 	}
 	
 	//充钱
-	public static void chargeMoney(String num,double money) {
-		num=num;
-		money+=money;
+	public static int chargeMoney(String num,double strMoney) {
+		cards.get(num).setMoney(cards.get(num).getMoney()+strMoney);
+		return (int) cards.get(num).getMoney();
 	}
-	
-	
 }

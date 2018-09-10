@@ -1,4 +1,4 @@
-package phonecardserver;
+package phonecardserver.entity;
 
 public class Scene {
 

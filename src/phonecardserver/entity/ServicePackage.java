@@ -1,8 +1,8 @@
-package phonecardserver;
+package phonecardserver.entity;
 
 public class ServicePackage {
 
-	private double price;
+	public double price;
 
 	public double getPrice() {
 		return price;

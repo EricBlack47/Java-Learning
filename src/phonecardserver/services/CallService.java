@@ -1,11 +1,11 @@
 package phonecardserver.services;
 
-import phonecardserver.MobileCard;
+import phonecardserver.entity.MobileCard;
 
 public interface CallService {
 	
 
-	void call(int talkTimeMin, MobileCard mc);
+	int call(int talkTimeMin, MobileCard mc);
 
 
 }

@@ -1,9 +1,9 @@
 package phonecardserver.services;
 
-import phonecardserver.MobileCard;
+import phonecardserver.entity.MobileCard;
 
 public interface NetService {
 	
-	void netPlay(int flow,MobileCard mc);
+	int netPlay(int flow,MobileCard mc);
 
 }
