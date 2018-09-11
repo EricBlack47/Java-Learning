@@ -63,7 +63,7 @@ public class MobileManager {
 	
 
 	// 二级菜单
-		private static void menu2() {
+		private static void menu2(String num) {
 			showMenu2();
 			while (true) {
 				System.out.println("请输入您选择的业务:");
@@ -72,7 +72,8 @@ public class MobileManager {
 					switch (select) {
 					case 1:
 						// 本月账单查询
-						
+						System.out.println("-----------账单查询------------");
+						CardUtil.showAmountDetail(num);
 						break;
 					case 2:
 						// 套餐余额查询
@@ -158,20 +159,18 @@ public class MobileManager {
 		if (pw.equals(passkey)) {
 			System.out.println("登录成功！");
 			showMenu2();
-			menu2();
+			menu2(num);
 		}
 
 	}
 
 	// 显示二级界面
 	private static void showMenu2() {
-		System.out.println("----------------欢迎使用营业大厅----------------");
+		System.out.println("----------------欢迎登录用户大厅----------------");
 		for (int i = 0; i < menus2.length; i++) {
 			System.out.println(menus2[i]);
 		}
 	}
-
-	
 
 	// 显示界面
 	private static void showMenu() {

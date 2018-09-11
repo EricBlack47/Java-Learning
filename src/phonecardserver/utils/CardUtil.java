@@ -2,6 +2,7 @@ package phonecardserver.utils;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 import java.util.Scanner;
 
 import phonecardserver.entity.ConsumInfo;
@@ -29,13 +30,21 @@ public class CardUtil {
 	
 	//生成随机卡号
 		public static String creatNumber() {
-			
-			return null;		
+			StringBuffer num=new StringBuffer("139");
+			Random random=new Random();
+			for(int i=0;i<8;i++) {
+				num.append(random.nextInt(10));
+			}
+			return num.toString();		
 		}
 		
 	//获取随机号码组
-		public static String[] getNewNumbers() {
-			return null;
+		public static String[] getNewNumbers(int count) {
+			String[] number=new String[count];
+			for(int i=0;i<count;i++) {
+				number[i] = creatNumber();
+			}
+			return number;
 		}
 	
 			
@@ -46,18 +55,21 @@ public class CardUtil {
 	
 	//注销卡号，从集合中移除
 	public static void delCard(String number) {
-		
+		cards.remove(mc.getCardNumber());
 	}
 	
 	//显示卡号套餐余额
 	public static void showRemainDetail(String num) {
-		
+		mc=cards.get(num);
+		System.out.println("套餐通话剩余:"+mc.getRealTalkTime());
+		System.out.println("套餐短信剩余:"+mc.getRealSMSCount());
+		System.out.println("套餐流量剩余:"+mc.getRealFlow());
 	}
 	
 	//显示账单
-	public static void showAmountDetail(String num) {
-		mc=cards.get(num);
-		System.out.println("卡号:"+num);
+	public static void showAmountDetail(String nums) {
+		mc=cards.get(nums);
+		System.out.println("卡号:"+nums);
 		System.out.println("套餐资费:"+mc.getServicePackage().price);
 		System.out.println("合计:"+mc.getConsumAmount());
 		System.out.println("账户余额:"+mc.getMoney());
