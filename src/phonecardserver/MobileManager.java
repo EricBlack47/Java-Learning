@@ -72,9 +72,11 @@ public class MobileManager {
 					switch (select) {
 					case 1:
 						// 本月账单查询
+						
 						break;
 					case 2:
 						// 套餐余额查询
+						
 						break;
 					case 3:
 						// 打印消费单
@@ -116,7 +118,7 @@ public class MobileManager {
 		mc.setCardNumber(nums[selectNum - 1]);
 		System.out.println("请选择套餐类型:");
 		for (String string : pack) {
-			System.out.println(string);
+			System.out.print(string);
 		}
 		int selectPackage = sc.nextInt();
 		if (selectPackage == 1)
@@ -133,7 +135,14 @@ public class MobileManager {
 		mc.setPassWord(pword);
 		System.out.println("请输入您预存金额");
 		double putmoney = sc.nextDouble();
-		mc.setMoney(putmoney);
+		while(putmoney<mc.getServicePackage().price) {
+			System.out.println("您的预存款不足支付套餐，请重新输入");
+		    putmoney = sc.nextDouble();
+		} if(putmoney>=mc.getServicePackage().price) {
+			double leftMoney=putmoney-mc.getServicePackage().price;
+			System.out.println("充值成功！您剩余话费为："+leftMoney);
+			mc.setMoney(leftMoney);		
+		}			
 		System.out.println(mc);
 		System.out.println(SPConfig.getConfig(selectPackage));
 		CardUtil.cards.put(nums[selectNum - 1], mc);

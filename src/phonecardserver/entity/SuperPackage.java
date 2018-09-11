@@ -50,9 +50,10 @@ public class SuperPackage extends ServicePackage implements CallService, SendSer
 	}
 
 	@Override
+	// 流量
 	public int netPlay(int flow, MobileCard mc) {
 		int temp = flow;
-		for (int i = 1; i < flow; i++) {
+		for (int i = 0; i < flow; i++) {
 			if (this.flow - mc.getRealFlow() >= 1) {
 				mc.setRealFlow(mc.getRealFlow() + 1);
 			} else if (mc.getMoney() >= 0.1) {
@@ -102,7 +103,7 @@ public class SuperPackage extends ServicePackage implements CallService, SendSer
 	// 通话
 	public int call(int talkTimeMin, MobileCard mc) {
 		int temp = talkTimeMin;
-		for (int i = 1; i < talkTimeMin; i++) {
+		for (int i = 0; i < talkTimeMin; i++) {
 			if (this.talkTime - mc.getRealTalkTime() >= 1) {
 				mc.setRealTalkTime(mc.getRealTalkTime() + 1);
 			} else if (mc.getMoney() >= 0.2) {

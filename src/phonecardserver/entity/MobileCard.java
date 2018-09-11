@@ -55,8 +55,8 @@ public class MobileCard {
 		return money;
 	}
 
-	public void setMoney(double money) {
-		this.money = money;
+	public double setMoney(double money) {
+		return this.money = money;
 	}
 
 	public int getRealTalkTime() {
