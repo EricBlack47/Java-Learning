@@ -20,10 +20,8 @@ public class MobileManager {
 	private static String[] pack = { "1.话痨套餐", "2.网虫套餐", "3.超人套餐" };
 
 	public static void main(String[] args) {
-
-		// 一级界面
+		CardUtil.initScene();
 		showMenu();
-		
 		CardUtil.cards = new HashMap<>();
 		while (true) {
 			System.out.println("请输入您选择的业务:");
@@ -38,7 +36,10 @@ public class MobileManager {
 					// System.out.println("注册");
 					break;
 				case 3:
-					System.out.println("使用");
+					// 使用卡
+					System.out.println("请输入卡号：");
+					String number = sc.next();
+					CardUtil.useCard(number);
 					break;
 				case 4:
 					chargemoney();
@@ -54,58 +55,60 @@ public class MobileManager {
 				}
 			} catch (Exception e) {
 				sc.nextLine();
+				e.printStackTrace();
 				System.out.println("输入有误！");
 			}
 			showMenu();
 		}
 	}
 
-	
-
 	// 二级菜单
-		private static void menu2(String num) {
-			showMenu2();
-			while (true) {
-				System.out.println("请输入您选择的业务:");
-				try {
-					int select = sc.nextInt();
-					switch (select) {
-					case 1:
-						// 本月账单查询
-						System.out.println("-----------账单查询------------");
-						CardUtil.showAmountDetail(num);
-						break;
-					case 2:
-						// 套餐余额查询
-						
-						break;
-					case 3:
-						// 打印消费单
-						break;
-					case 4:
-						// 套餐变更
-						break;
-					case 5:
-						// 办理退网
-						break;
-					}
-
-				} catch (Exception e) {
-					sc.nextLine();
-					System.out.println("输入有误！");
+	private static void menu2(String num) {
+		showMenu2();
+		while (true) {
+			System.out.println("请输入您选择的业务:");
+			System.out.println("输入6返回上级菜单！");
+			try {
+				int select = sc.nextInt();
+				switch (select) {
+				case 1:
+					// 本月账单查询
+					System.out.println("-----------账单查询------------");
+					CardUtil.showAmountDetail(num);
+					break;
+				case 2:
+					// 套餐余额查询
+					System.out.println("-----------套餐余量查询----------");
+					CardUtil.showRemainDetail(num);
+					break;
+				case 3:
+					// 打印消费单
+					break;
+				case 4:
+					// 套餐变更
+					break;
+				case 5:
+					// 办理退网
+					break;
+				case 6:
+					return;
 				}
-				showMenu2();
-			}
 
+			} catch (Exception e) {
+				sc.nextLine();
+				System.out.println("输入有误！");
+			}
 		}
+	}
+
 	// 充钱
 	private static void chargemoney() {
 		System.out.println("请输入手机卡号：");
 		String phonenum = sc.next();
 		System.out.println("请输入充值余额：");
 		double strMoney = sc.nextInt();
-		int sumMoney= CardUtil.chargeMoney(phonenum, strMoney);
-		System.out.println("充值成功！充值后余额为："+sumMoney);
+		int sumMoney = CardUtil.chargeMoney(phonenum, strMoney);
+		System.out.println("充值成功！充值后余额为：" + sumMoney);
 	}
 
 	// 注册账号
@@ -136,14 +139,15 @@ public class MobileManager {
 		mc.setPassWord(pword);
 		System.out.println("请输入您预存金额");
 		double putmoney = sc.nextDouble();
-		while(putmoney<mc.getServicePackage().price) {
+		while (putmoney < mc.getServicePackage().price) {
 			System.out.println("您的预存款不足支付套餐，请重新输入");
-		    putmoney = sc.nextDouble();
-		} if(putmoney>=mc.getServicePackage().price) {
-			double leftMoney=putmoney-mc.getServicePackage().price;
-			System.out.println("充值成功！您剩余话费为："+leftMoney);
-			mc.setMoney(leftMoney);		
-		}			
+			putmoney = sc.nextDouble();
+		}
+		if (putmoney >= mc.getServicePackage().price) {
+			double leftMoney = putmoney - mc.getServicePackage().price;
+			System.out.println("充值成功！您剩余话费为：" + leftMoney);
+			mc.setMoney(leftMoney);
+		}
 		System.out.println(mc);
 		System.out.println(SPConfig.getConfig(selectPackage));
 		CardUtil.cards.put(nums[selectNum - 1], mc);
@@ -158,7 +162,6 @@ public class MobileManager {
 		String passkey = CardUtil.cards.get(num).getPassWord();
 		if (pw.equals(passkey)) {
 			System.out.println("登录成功！");
-			showMenu2();
 			menu2(num);
 		}
 
@@ -195,14 +198,15 @@ public class MobileManager {
 			System.out.print(i + 1 + "." + number + "\t");// 输出一个电话号码
 		}
 	}
-	
-	//显示套餐说明
+
+	// 显示套餐说明
 	private static void showPackage() {
-		NetPackage np=new NetPackage();
+		NetPackage np = new NetPackage();
 		np.showInfo();
-		SuperPackage sp=new SuperPackage();
+		SuperPackage sp = new SuperPackage();
 		sp.showInfo();
-		TalkPackage tp=new TalkPackage();
+		TalkPackage tp = new TalkPackage();
 		tp.showInfo();
 	}
+
 }

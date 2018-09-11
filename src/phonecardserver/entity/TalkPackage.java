@@ -51,7 +51,7 @@ public class TalkPackage extends ServicePackage implements CallService, SendServ
 	@Override
 	public int send(int count, MobileCard mc) {
 		int temp = count;
-		for (int i = 0; i < count; i++) {
+		for (int i = 1; i < count; i++) {
 			// 还能再发至少一条短信
 			if (this.smsCount - mc.getRealSMSCount() >= 1) {
 				mc.setRealSMSCount(mc.getRealSMSCount() + 1);

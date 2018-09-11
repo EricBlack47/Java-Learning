@@ -1,16 +1,30 @@
 package phonecardserver.entity;
 
-public class Scene {
+public class Scence {
+	
+	public static final int CALL=1;
+	public static final int SMS=2;
+	public static final int NET=3;
 
-	private String type;
+	private int type;
 	private int data;
 	private String description;
 
-	public String getType() {
+	public Scence() {
+
+	}
+
+	public Scence(int type, int data, String description) {
+		this.type = type;
+		this.data = data;
+		this.description = description;
+	}
+
+	public int getType() {
 		return type;
 	}
 
-	public void setType(String type) {
+	public void setType(int type) {
 		this.type = type;
 	}
 
