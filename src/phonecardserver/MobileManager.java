@@ -46,7 +46,8 @@ public class MobileManager {
 					chargemoney();
 					break;
 				case 5:
-					showPackage();
+					CardUtil.readPackage();
+					//showPackage();
 					break;
 				case 6:
 					System.out.println("ты╪Ш");

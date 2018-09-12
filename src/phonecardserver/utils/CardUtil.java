@@ -1,11 +1,9 @@
 package phonecardserver.utils;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-import java.io.FileReader;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintStream;
 import java.util.ArrayList;
@@ -210,5 +208,19 @@ public class CardUtil {
 	public static int chargeMoney(String num,double strMoney) {
 		cards.get(num).setMoney(cards.get(num).getMoney()+strMoney);
 		return (int) cards.get(num).getMoney();
+	}
+	
+	//显示资费说明
+	public static void readPackage() throws FileNotFoundException {
+		FileInputStream in=new FileInputStream("E:\\资费说明.txt");
+		byte[] date=new byte[1024];
+		try {
+			in.read(date);
+			System.out.println(new String(date));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 	}
 }
