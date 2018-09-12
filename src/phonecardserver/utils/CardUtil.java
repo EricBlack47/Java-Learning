@@ -1,5 +1,13 @@
 package phonecardserver.utils;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -27,12 +35,12 @@ public class CardUtil {
 	
 	//初始化场景
 	public static void initScene() {
-		Scence s1=new Scence(Scence.CALL,520,"顾客如此难缠!");
-		Scence s2=new Scence(Scence.SMS,500,"发了一万条短信!");
-		Scence s3=new Scence(Scence.NET,5000,"打了一天，吃了一把鸡!");
-		Scence s4=new Scence(Scence.CALL,600,"找人唠嗑!");
-		Scence s5=new Scence(Scence.SMS,300,"被10086客服短信轰炸!");
-		Scence s6=new Scence(Scence.NET,10000,"还是打300好了!");
+		Scence s1=new Scence(Scence.CALL-1,100,"顾客如此难缠!");
+		Scence s2=new Scence(Scence.SMS-1,50,"发了一万条短信!");
+		Scence s3=new Scence(Scence.NET-1,500,"打了一天，吃了一把鸡!");
+		Scence s4=new Scence(Scence.CALL-1,60,"找人唠嗑!");
+		Scence s5=new Scence(Scence.SMS-1,30,"被10086客服短信轰炸!");
+		Scence s6=new Scence(Scence.NET-1,600,"还是打300好了!");
 		scences.add(s1);
 		scences.add(s2);
 		scences.add(s3);
@@ -41,7 +49,7 @@ public class CardUtil {
 		scences.add(s6);
 	}
 	
-	
+	//模拟使用卡
 	public static void useCard(String num) {
 		mc=cards.get(num);
 		Random random=new Random();
@@ -106,11 +114,13 @@ public class CardUtil {
 			
 	//向卡集合添加新卡
 	public static void addCard(MobileCard m) {
+		mc=cards.get(m);
 		cards.put(mc.getCardNumber(),m);
 	}
 	
 	//注销卡号，从集合中移除
-	public static void delCard(String number) {
+	public static void delCard(String num) {
+		mc=cards.get(num);
 		cards.remove(mc.getCardNumber());
 	}
 	
@@ -154,18 +164,46 @@ public class CardUtil {
 		mc=cards.get(nums);
 		System.out.println("卡号:"+nums);
 		System.out.println("套餐资费:"+mc.getServicePackage().price);
-		System.out.println("合计:"+mc.getConsumAmount());
+		System.out.println("合计:"+(mc.getConsumAmount()+mc.getServicePackage().price));
 		System.out.println("账户余额:"+mc.getMoney());
 	}
 	
 	//添加消费记录
-	public static void addConsumInfo(String number,ConsumInfo info) {
-		
+	public static void addConsumInfo(String nums,ConsumInfo info) {
+		mc=cards.get(nums);
+		System.out.println("-----------消费清单-----------");
+		initScene();
+		useCard(nums);
+	    System.out.println("已使用通话时间："+mc.getRealTalkTime());
+	    System.out.println("已使用短信数："+mc.getRealSMSCount());
+		System.out.println("已使用流量："+mc.getRealFlow());
+	}
+	
+	//打印消费清单
+	public static void printConsunmInfo(String num,ConsumInfo info) throws IOException {
+		File file=new File("e:\\消费清单.txt");
+		PrintStream out=new PrintStream(new FileOutputStream(file));
+		out.println("--------------消费清单----------------");
+		out.println("卡号："+mc.getCardNumber());
+		out.println("通话时间："+mc.getRealTalkTime());
+		out.println("短信："+mc.getRealSMSCount());
+		out.println("流量："+mc.getRealFlow());
+		out.close();
 	}
 	
 	//更换套餐
 	public static void changePack(String num,Scanner s) {
-		
+		mc=cards.get(num);
+		System.out.println("请选择更换套餐类型:");	
+		int selectPackage = sc.nextInt();
+		if (selectPackage == 1)
+			mc.setServicePackage(new TalkPackage());
+		if (selectPackage == 2)
+			mc.setServicePackage(new NetPackage());
+		if (selectPackage == 3)
+			mc.setServicePackage(new SuperPackage());
+		mc.setServicePackage(mc.getServicePackage());
+		return;
 	}
 	
 	//充钱

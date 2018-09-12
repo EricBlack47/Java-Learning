@@ -41,7 +41,7 @@ public class SuperPackage extends ServicePackage implements CallService, SendSer
 
 	@Override
 	public void showInfo() {
-		System.out.println("超人套餐：\n通话时长为：" + this.talkTime + "分钟\t短信条数：" + this.smsCount + "条\t上网流量:" + flow + "MB");
+		System.out.println("3.超人套餐：\n通话时长为：" + this.talkTime + "分钟\t短信条数：" + this.smsCount + "条\t上网流量:" + flow + "MB");
 	}
 
 	@Override

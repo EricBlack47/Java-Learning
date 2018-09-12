@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Random;
 import java.util.Scanner;
 
+import phonecardserver.entity.ConsumInfo;
 import phonecardserver.entity.MobileCard;
 import phonecardserver.entity.NetPackage;
 import phonecardserver.entity.SuperPackage;
@@ -78,16 +79,22 @@ public class MobileManager {
 					break;
 				case 2:
 					// 套餐余额查询
-					System.out.println("-----------套餐余量查询----------");
 					CardUtil.showRemainDetail(num);
 					break;
 				case 3:
 					// 打印消费单
+					CardUtil.addConsumInfo(num, (ConsumInfo) CardUtil.consumInfos);
+					CardUtil.printConsunmInfo(num, (ConsumInfo) CardUtil.consumInfos);
 					break;
 				case 4:
 					// 套餐变更
+					showPackage();
+					CardUtil.changePack(num, sc);
+					System.out.println("成功更换套餐!："+CardUtil.cards.get(num));
 					break;
 				case 5:
+					CardUtil.delCard(num);
+					System.out.println("您已经成功退网");
 					// 办理退网
 					break;
 				case 6:
@@ -201,12 +208,13 @@ public class MobileManager {
 
 	// 显示套餐说明
 	private static void showPackage() {
+		TalkPackage tp = new TalkPackage();
+		tp.showInfo();
 		NetPackage np = new NetPackage();
 		np.showInfo();
 		SuperPackage sp = new SuperPackage();
 		sp.showInfo();
-		TalkPackage tp = new TalkPackage();
-		tp.showInfo();
+		
 	}
 
 }

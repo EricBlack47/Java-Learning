@@ -86,8 +86,7 @@ public class MobileCard {
 	@Override
 	public String toString() {
 		return "MoblieCard [号码=" + cardNumber + ", 姓名=" + userName + ", 密码=" + passWord
-				+ ", 套餐类型=" + servicePackage + ", 消费金额 =" + consumAmount + ", 话费=" + money
-				+ ", 通话时长=" + realTalkTime + ", 短信数=" + realSMSCount + ", 流量=" + realFlow + "]";
+				+ ", 套餐类型=" + servicePackage + ", 话费余额 =" + money +"]";
 	}
 
 }

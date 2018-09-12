@@ -41,7 +41,7 @@ public class NetPackage extends ServicePackage implements NetService {
 
 	@Override
 	public void showInfo() {
-		 System.out.println("网虫套餐：\n通话时长为：" + this.talkTime + "分钟\t短信条数："
+		 System.out.println("2.网虫套餐：\n通话时长为：" + this.talkTime + "分钟\t短信条数："
 	                + this.smsCount + "条\t上网流量:" + flow+"MB");
 	    }
 	

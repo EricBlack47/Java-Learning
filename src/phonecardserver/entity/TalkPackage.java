@@ -45,7 +45,7 @@ public class TalkPackage extends ServicePackage implements CallService, SendServ
 
 	@Override
 	public void showInfo() {
-		System.out.println("话痨套餐：\n通话时长为：" + this.talkTime + "分钟\t短信条数：" + this.smsCount + "条\t上网流量:" + flow + "MB");
+		System.out.println("1.话痨套餐：\n通话时长为：" + this.talkTime + "分钟\t短信条数：" + this.smsCount + "条\t上网流量:" + flow + "MB");
 	}
 
 	@Override
