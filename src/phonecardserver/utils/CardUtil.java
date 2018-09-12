@@ -35,12 +35,12 @@ public class CardUtil {
 	
 	//初始化场景
 	public static void initScene() {
-		Scence s1=new Scence(Scence.CALL-1,100,"顾客如此难缠!");
-		Scence s2=new Scence(Scence.SMS-1,50,"发了一万条短信!");
-		Scence s3=new Scence(Scence.NET-1,500,"打了一天，吃了一把鸡!");
-		Scence s4=new Scence(Scence.CALL-1,60,"找人唠嗑!");
-		Scence s5=new Scence(Scence.SMS-1,30,"被10086客服短信轰炸!");
-		Scence s6=new Scence(Scence.NET-1,600,"还是打300好了!");
+		Scence s1=new Scence(Scence.CALL,100,"顾客如此难缠!");
+		Scence s2=new Scence(Scence.SMS,50,"发了一万条短信!");
+		Scence s3=new Scence(Scence.NET,500,"打了一天，吃了一把鸡!");
+		Scence s4=new Scence(Scence.CALL,60,"找人唠嗑!");
+		Scence s5=new Scence(Scence.SMS,30,"被10086客服短信轰炸!");
+		Scence s6=new Scence(Scence.NET,600,"还是打300好了!");
 		scences.add(s1);
 		scences.add(s2);
 		scences.add(s3);
