@@ -83,7 +83,7 @@ public class MobileManager {
 					break;
 				case 3:
 					// 打印消费单
-					//CardUtil.addConsumInfo(num, (ConsumInfo) CardUtil.consumInfos);
+					CardUtil.addConsumInfo(num, (ConsumInfo) CardUtil.consumInfos);
 					CardUtil.printConsunmInfo(num, (ConsumInfo) CardUtil.consumInfos);
 					break;
 				case 4:

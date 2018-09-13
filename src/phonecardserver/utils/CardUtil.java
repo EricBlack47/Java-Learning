@@ -170,7 +170,7 @@ public class CardUtil {
 		mc=cards.get(nums);
 		System.out.println("-----------消费清单-----------");
 		//initScene();
-		useCard(nums);
+		//useCard(nums);
 	    System.out.println("已使用通话时间："+mc.getRealTalkTime());
 	    System.out.println("已使用短信数："+mc.getRealSMSCount());
 		System.out.println("已使用流量："+mc.getRealFlow());
