@@ -34,7 +34,7 @@ public class CardUtil {
 	//初始化场景
 	public static void initScene() {
 		Scence s1=new Scence(Scence.CALL,100,"顾客如此难缠!");
-		Scence s2=new Scence(Scence.SMS,50,"发了一万条短信!");
+		Scence s2=new Scence(Scence.SMS,50,"发了一天短信!");
 		Scence s3=new Scence(Scence.NET,500,"打了一天，吃了一把鸡!");
 		Scence s4=new Scence(Scence.CALL,60,"找人唠嗑!");
 		Scence s5=new Scence(Scence.SMS,30,"被10086客服短信轰炸!");
@@ -51,7 +51,7 @@ public class CardUtil {
 	public static void useCard(String num) {
 		mc=cards.get(num);
 		Random random=new Random();
-		int i = random.nextInt(5);
+		int i = random.nextInt(6);
 		Scence scence=scences.get(i);		
 		ServicePackage sp=mc.getServicePackage();
 		switch(scence.getType()) {
@@ -75,18 +75,17 @@ public class CardUtil {
 				ss.send(scence.getData(), mc);
 			}else {
 				System.out.println("该卡不支持发送短信业务！");
-			}
+			}		
 			break;
 		}
+		System.out.println("场景："+scence);
 	}
-	
 	
 	//查找卡号是否存在
 	public static boolean isExistCard(String number,String passWord) {
 		mc=cards.get(number);
 		if(mc!=null&&mc.getPassWord().equals(passWord)) return true;
-		return true;
-		
+		return true;	
 	} 
 
 	
@@ -170,7 +169,7 @@ public class CardUtil {
 	public static void addConsumInfo(String nums,ConsumInfo info) {
 		mc=cards.get(nums);
 		System.out.println("-----------消费清单-----------");
-		initScene();
+		//initScene();
 		useCard(nums);
 	    System.out.println("已使用通话时间："+mc.getRealTalkTime());
 	    System.out.println("已使用短信数："+mc.getRealSMSCount());

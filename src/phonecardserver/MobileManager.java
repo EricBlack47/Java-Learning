@@ -68,8 +68,7 @@ public class MobileManager {
 	private static void menu2(String num) {
 		showMenu2();
 		while (true) {
-			System.out.println("请输入您选择的业务:");
-			System.out.println("输入6返回上级菜单！");
+			System.out.println("请输入（1~5）选择的业务:");
 			try {
 				int select = sc.nextInt();
 				switch (select) {
@@ -84,7 +83,7 @@ public class MobileManager {
 					break;
 				case 3:
 					// 打印消费单
-					CardUtil.addConsumInfo(num, (ConsumInfo) CardUtil.consumInfos);
+					//CardUtil.addConsumInfo(num, (ConsumInfo) CardUtil.consumInfos);
 					CardUtil.printConsunmInfo(num, (ConsumInfo) CardUtil.consumInfos);
 					break;
 				case 4:
@@ -99,6 +98,7 @@ public class MobileManager {
 					// 办理退网
 					break;
 				case 6:
+					System.out.println("输入其他返回上级菜单！");
 					return;
 				}
 
@@ -106,6 +106,7 @@ public class MobileManager {
 				sc.nextLine();
 				System.out.println("输入有误！");
 			}
+			showMenu2();
 		}
 	}
 
@@ -122,12 +123,12 @@ public class MobileManager {
 	// 注册账号
 	private static void registered() {
 		shownums();
-		System.out.println("\r");
+		System.out.println("\r");	
 		MobileCard mc = new MobileCard();
 		System.out.println("请选择一个号码:");
 		int selectNum = sc.nextInt();
-		System.out.println(nums[selectNum - 1]);
-		mc.setCardNumber(nums[selectNum - 1]);
+		System.out.println(nums[selectNum-1]);
+		mc.setCardNumber(nums[selectNum-1]);
 		System.out.println("请选择套餐类型:");
 		for (String string : pack) {
 			System.out.print(string);
@@ -157,7 +158,8 @@ public class MobileManager {
 			mc.setMoney(leftMoney);
 		}
 		System.out.println(mc);
-		System.out.println(SPConfig.getConfig(selectPackage));
+		mc.getServicePackage().showInfo();
+		//System.out.println(SPConfig.getConfig(selectPackage));
 		CardUtil.cards.put(nums[selectNum - 1], mc);
 	}
 
@@ -198,8 +200,8 @@ public class MobileManager {
 			String number = "139";// 定义电话号码以139开头
 			Random random = new Random();
 			for (int j = 0; j < 8; j++) {
-				nums[i] = number;
 				number += random.nextInt(9);
+				nums[i] = number;	
 			}
 			if (i % 3 == 0)
 				System.out.println();

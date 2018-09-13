@@ -51,7 +51,7 @@ public class TalkPackage extends ServicePackage implements CallService, SendServ
 	@Override
 	public int send(int count, MobileCard mc) {
 		int temp = count;
-		for (int i = 1; i < count; i++) {
+		for (int i = 0; i < count; i++) {
 			// 还能再发至少一条短信
 			if (this.smsCount - mc.getRealSMSCount() >= 1) {
 				mc.setRealSMSCount(mc.getRealSMSCount() + 1);
@@ -76,7 +76,7 @@ public class TalkPackage extends ServicePackage implements CallService, SendServ
 	@Override
 	public int call(int talkTimeMin, MobileCard mc) {
 		int temp = talkTimeMin;
-		for (int i = 1; i < talkTimeMin; i++) {
+		for (int i = 0; i < talkTimeMin; i++) {
 			if (this.talkTime - mc.getRealTalkTime() >= 1) {
 				mc.setRealTalkTime(mc.getRealTalkTime() + 1);
 			} else if (mc.getMoney() >= 0.2) {
@@ -95,5 +95,4 @@ public class TalkPackage extends ServicePackage implements CallService, SendServ
 		}
 		return temp;
 	}
-
 }

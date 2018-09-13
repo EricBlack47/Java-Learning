@@ -46,7 +46,7 @@ public class Scence {
 
 	@Override
 	public String toString() {
-		return "Scene [type=" + type + ", data=" + data + ", description=" + description + "]";
+		return "Scene [ 使用数据=" + data + ", 场景描述=" + description + "]";
 	}
 
 }

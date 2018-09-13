@@ -30,19 +30,19 @@ public class SPConfig {
 		
 		switch(packageType) {
 		case 1:
-			config.put("calltime", properties.get("talk.calltime"));
-			config.put("smscount", properties.get("talk.smscount"));
-			config.put("price", properties.get("talk.price"));
+			config.put("通话时长", properties.get("talk.calltime"));
+			config.put("短信条数", properties.get("talk.smscount"));
+			config.put("套餐价格", properties.get("talk.price"));
 			break;
 		case 2:
-			config.put("flow", properties.get("net.flow"));
-			config.put("price", properties.get("net.price"));
+			config.put("流量", properties.get("net.flow"));
+			config.put("套餐价格", properties.get("net.price"));
 			break;
 		case 3:
-			config.put("calltime", properties.get("super.calltime"));
-			config.put("smscount", properties.get("super.smscount"));
-			config.put("flow", properties.get("super.flow"));
-			config.put("price", properties.get("super.price"));
+			config.put("通话时长", properties.get("super.calltime"));
+			config.put("短信条数", properties.get("super.smscount"));
+			config.put("流量", properties.get("super.flow"));
+			config.put("套餐价格", properties.get("super.price"));
 		    break;
 		    default:
 		    	System.out.println("错误");
