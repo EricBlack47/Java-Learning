@@ -6,6 +6,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.PrintStream;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -33,12 +34,12 @@ public class CardUtil {
 	
 	//初始化场景
 	public static void initScene() {
-		Scence s1=new Scence(Scence.CALL,100,"顾客如此难缠!");
+		Scence s1=new Scence(Scence.CALL,100,"打电话！顾客如此难缠!");
 		Scence s2=new Scence(Scence.SMS,50,"发了一天短信!");
-		Scence s3=new Scence(Scence.NET,500,"打了一天，吃了一把鸡!");
-		Scence s4=new Scence(Scence.CALL,60,"找人唠嗑!");
+		Scence s3=new Scence(Scence.NET,5000,"上网，吃了一把鸡!");
+		Scence s4=new Scence(Scence.CALL,60,"打电话找人唠嗑!");
 		Scence s5=new Scence(Scence.SMS,30,"被10086客服短信轰炸!");
-		Scence s6=new Scence(Scence.NET,600,"还是打300好了!");
+		Scence s6=new Scence(Scence.NET,3100,"上网还是打300好了!");
 		scences.add(s1);
 		scences.add(s2);
 		scences.add(s3);
@@ -159,18 +160,18 @@ public class CardUtil {
 	//显示账单
 	public static void showAmountDetail(String nums) {
 		mc=cards.get(nums);
+		DecimalFormat df=new DecimalFormat("0.0");
+		double sumAmount=(mc.getConsumAmount()+mc.getServicePackage().price);
 		System.out.println("卡号:"+nums);
 		System.out.println("套餐资费:"+mc.getServicePackage().price);
-		System.out.println("合计:"+(mc.getConsumAmount()+mc.getServicePackage().price));
-		System.out.println("账户余额:"+mc.getMoney());
+		System.out.println("合计:"+df.format(sumAmount));
+		System.out.println("余额:"+df.format(mc.getMoney()));
 	}
 	
 	//添加消费记录
 	public static void addConsumInfo(String nums,ConsumInfo info) {
 		mc=cards.get(nums);
 		System.out.println("-----------消费清单-----------");
-		//initScene();
-		//useCard(nums);
 	    System.out.println("已使用通话时间："+mc.getRealTalkTime());
 	    System.out.println("已使用短信数："+mc.getRealSMSCount());
 		System.out.println("已使用流量："+mc.getRealFlow());
@@ -219,7 +220,6 @@ public class CardUtil {
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
-		
+		}		
 	}
 }

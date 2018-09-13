@@ -10,7 +10,6 @@ import phonecardserver.entity.NetPackage;
 import phonecardserver.entity.SuperPackage;
 import phonecardserver.entity.TalkPackage;
 import phonecardserver.utils.CardUtil;
-import phonecardserver.utils.SPConfig;
 
 public class MobileManager {
 	static Scanner sc = new Scanner(System.in);
@@ -25,7 +24,7 @@ public class MobileManager {
 		showMenu();
 		CardUtil.cards = new HashMap<>();
 		while (true) {
-			System.out.println("请输入您选择的业务:");
+			System.out.println("\r"+"请输入您选择的业务:");
 			try {
 				int select = sc.nextInt();
 				switch (select) {
@@ -68,13 +67,14 @@ public class MobileManager {
 	private static void menu2(String num) {
 		showMenu2();
 		while (true) {
-			System.out.println("请输入（1~5）选择的业务:");
+			System.out.println("\r"+"请输入（1~5）选择的业务:");
+			System.out.println("输入其他数字返回上级菜单！");
 			try {
 				int select = sc.nextInt();
 				switch (select) {
 				case 1:
 					// 本月账单查询
-					System.out.println("-----------账单查询------------");
+					System.out.println("----------------账单查询----------------");
 					CardUtil.showAmountDetail(num);
 					break;
 				case 2:
@@ -98,7 +98,6 @@ public class MobileManager {
 					// 办理退网
 					break;
 				case 6:
-					System.out.println("输入其他返回上级菜单！");
 					return;
 				}
 
@@ -165,14 +164,20 @@ public class MobileManager {
 
 	// 登录账号
 	private static void login() {
-		System.out.println("请输入您的手机号码:");
-		String num = sc.next();
-		System.out.println("请输入您的密码:");
-		String pw = sc.next();
-		String passkey = CardUtil.cards.get(num).getPassWord();
-		if (pw.equals(passkey)) {
-			System.out.println("登录成功！");
-			menu2(num);
+		try {
+			System.out.println("请输入您的手机号码:");
+			String num = sc.next();
+			System.out.println("请输入您的密码:");
+			String pw = sc.next();
+			String passkey = CardUtil.cards.get(num).getPassWord();
+			if (pw.equals(passkey)) {
+				System.out.println("登录成功！");
+				menu2(num);
+			}else {
+				System.out.println("登录失败！");
+			}
+		} catch (Exception e) {
+			System.out.println("账号不存在！");
 		}
 
 	}
@@ -181,7 +186,7 @@ public class MobileManager {
 	private static void showMenu2() {
 		System.out.println("----------------欢迎登录用户大厅----------------");
 		for (int i = 0; i < menus2.length; i++) {
-			System.out.println(menus2[i]);
+			System.out.print(menus2[i]+"\t");
 		}
 	}
 
@@ -189,7 +194,7 @@ public class MobileManager {
 	private static void showMenu() {
 		System.out.println("----------------欢迎使用营业大厅----------------");
 		for (int i = 0; i < menus.length; i++) {
-			System.out.println(menus[i]);
+			System.out.print(menus[i]+"\t");
 		}
 	}
 
@@ -217,7 +222,5 @@ public class MobileManager {
 		np.showInfo();
 		SuperPackage sp = new SuperPackage();
 		sp.showInfo();
-		
 	}
-
 }

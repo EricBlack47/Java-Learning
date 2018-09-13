@@ -1,5 +1,7 @@
 package phonecardserver.entity;
 
+import java.math.BigDecimal;
+
 import phonecardserver.services.NetService;
 
 public class NetPackage extends ServicePackage implements NetService {
@@ -48,22 +50,23 @@ public class NetPackage extends ServicePackage implements NetService {
 	}
 
 	@Override
-	public int netPlay(int flow, phonecardserver.entity.MobileCard mc) {
+	public int netPlay(int flow, MobileCard mc) {
 		int temp = flow;
 		for (int i = 0; i < flow; i++) {
 			if (this.flow - mc.getRealFlow() >= 1) {
 				mc.setRealFlow(mc.getRealFlow() + 1);
-			} else if (mc.getMoney() >= 0.1) {
-				mc.setRealFlow(mc.getRealFlow() + 1);
-				mc.setMoney(mc.getMoney());
-				mc.setConsumAmount(mc.getConsumAmount() + 0.1);
 			} else {
-				temp = i;
-				try {
-					throw new Exception("本次已经上网" + i + "MB，您的余额不足，请充值后再使用");
-				} catch (Exception e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+				//超出套餐后，从话费扣除
+				if (mc.getMoney() >= 0.1) {
+					BigDecimal bd=new BigDecimal(mc.getMoney()+"");
+					bd=bd.subtract(new BigDecimal(0.1+""));
+					mc.setRealFlow(mc.getRealFlow() + 1);
+					mc.setMoney(bd.doubleValue());
+					mc.setConsumAmount(mc.getConsumAmount() + 0.1);
+				} else {
+					temp=i;
+				    System.out.println("本次上网已永超"+i+"MB，您的余额不足，请充值后在使用");
+				    return i;
 				}
 			}
 		}

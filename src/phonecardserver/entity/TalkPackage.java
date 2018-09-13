@@ -51,22 +51,18 @@ public class TalkPackage extends ServicePackage implements CallService, SendServ
 	@Override
 	public int send(int count, MobileCard mc) {
 		int temp = count;
-		for (int i = 0; i < count; i++) {
-			// 还能再发至少一条短信
+		for (int i = 0; i < smsCount; i++) {
 			if (this.smsCount - mc.getRealSMSCount() >= 1) {
 				mc.setRealSMSCount(mc.getRealSMSCount() + 1);
-			} else// 短信量发完了，但是还有话费能发短信
-			if (mc.getMoney() >= 0.1) {
-				mc.setRealSMSCount(mc.getRealSMSCount() + 1);// 当月发送短信数+1
-				mc.setMoney(mc.getMoney() - 0.1);// 话费发送短信
-				mc.setConsumAmount(mc.getConsumAmount() + 0.1);// 当月消费＋1
 			} else {
-				temp = i;// 记录短信条数
-				try {
-					throw new Exception("本次已使用短信" + i + "条，您的余额不足，请充值后再使用");
-				} catch (Exception e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+				if (mc.getMoney() >= 0.1) {
+					mc.setRealSMSCount(mc.getRealSMSCount() + 1);
+					mc.setMoney(mc.getMoney()-0.1);
+					mc.setConsumAmount(mc.getConsumAmount() + 0.1);
+				} else {
+					temp=i;
+					System.out.println("本次短信已用超"+i+"条，您的余额不足，请充值后在使用");
+					return i;
 				}
 			}
 		}
@@ -79,17 +75,15 @@ public class TalkPackage extends ServicePackage implements CallService, SendServ
 		for (int i = 0; i < talkTimeMin; i++) {
 			if (this.talkTime - mc.getRealTalkTime() >= 1) {
 				mc.setRealTalkTime(mc.getRealTalkTime() + 1);
-			} else if (mc.getMoney() >= 0.2) {
-				mc.setRealTalkTime(mc.getRealTalkTime() + 1);
-				mc.setMoney(mc.getMoney());
-				mc.setConsumAmount(mc.getConsumAmount() + 0.2);
 			} else {
-				temp = i;
-				try {
-					throw new Exception("本次已经通话" + i + "分钟，您的余额不足，请充值后再使用");
-				} catch (Exception e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+				if (mc.getMoney() >= 0.2) {
+					mc.setRealTalkTime(mc.getRealTalkTime() + 1);
+					mc.setMoney(mc.getMoney()-0.2);
+					mc.setConsumAmount(mc.getConsumAmount() + 0.2);
+				} else {
+					temp=i;
+					System.out.println("本次通话已用超"+i+"分钟，您的余额不足，请充值后在使用");
+					return i;
 				}
 			}
 		}
