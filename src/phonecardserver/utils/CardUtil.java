@@ -36,10 +36,10 @@ public class CardUtil {
 	public static void initScene() {
 		Scence s1=new Scence(Scence.CALL,100,"打电话！顾客如此难缠!");
 		Scence s2=new Scence(Scence.SMS,50,"发了一天短信!");
-		Scence s3=new Scence(Scence.NET,5000,"上网，吃了一把鸡!");
+		Scence s3=new Scence(Scence.NET,500,"上网，吃了一把鸡!");
 		Scence s4=new Scence(Scence.CALL,60,"打电话找人唠嗑!");
 		Scence s5=new Scence(Scence.SMS,30,"被10086客服短信轰炸!");
-		Scence s6=new Scence(Scence.NET,3100,"上网还是打300好了!");
+		Scence s6=new Scence(Scence.NET,300,"上网还是打300好了!");
 		scences.add(s1);
 		scences.add(s2);
 		scences.add(s3);
